@@ -1,4 +1,3 @@
-@auth
 @extends('layouts.app')
 @section('content')
 <html>
@@ -389,4 +388,3 @@
 </html>
 @endif
 @endsection
-@endauth

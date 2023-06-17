@@ -26,127 +26,231 @@
     </center>
     <div class="container">
     <h2 style="font-weight:bold">Facture</h2>
-        <table class="text-center my-3" id="designations2">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Num</th>
-                    <th>Type</th>
-                    <th>TVA</th>
-                    <th>Régler</th>
-                    <th>Show</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($bls as $bl)
-                    @if($bl->type == "Facture" && $bl->regler == "Non")
-                        <tr>
-                            <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
-                            <td>{{ $bl->num }}</td>
-                            <td>{{ $bl->type }}</td>
-                            <td>{{ $bl->tva }}%</td>
-                            <td>{{ $bl->regler }}</td>
-                            <td>
-                                <a href="{{ route('detail_bl.show', $bl->id) }}">
-                                    <span class="material-symbols-outlined">ads_click</span>
-                                </a>
-                            </td>
-                            <td>
-                                <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>
-                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
-                                </form>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
-        
-        <h2 style="font-weight:bold">BL</h2>
-        <table class="text-center my-3" id="designations">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Num</th>
-                    <th>Type</th>
-                    <th>TVA</th>
-                    <th>Régler</th>
-                    <th>Show</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($bls as $bl)
-                    @if($bl->type == "BL" && $bl->regler == "Non")
-                        <tr>
-                            <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
-                            <td>{{ $bl->num }}</td>
-                            <td>{{ $bl->type }}</td>
-                            <td>{{ $bl->tva }}%</td>
-                            <td>{{ $bl->regler }}</td>
-                            <td>
-                                <a href="{{ route('detail_bl.show', $bl->id) }}">
-                                    <span class="material-symbols-outlined">ads_click</span>
-                                </a>
-                            </td>
-                            <td>
-                                <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>                                        <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
-                                </form>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
+    <table class="text-center my-3" id="designations2">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Num</th>
+                <th>Type</th>
+                <th>TVA</th>
+                <th>Régler</th>
+                <th>Show</th>
+                <th>Montant Total</th> <!-- Nouvelle colonne -->
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $grandTotal = 0; // Variable for accumulating the grand total
+            @endphp
+            @foreach ($bls as $bl)
+                @if($bl->type == "Facture" && $bl->regler == "Non")
+                    <tr>
+                        <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
+                        <td>{{ $bl->num }}</td>
+                        <td>{{ $bl->type }}</td>
+                        <td>{{ $bl->tva }}%</td>
+                        <td>{{ $bl->regler }}</td>
+                        <td>
+                            <a href="{{ route('detail_bl.show', $bl->id) }}">
+                                <span class="material-symbols-outlined">ads_click</span>
+                            </a>
+                        </td>
+                        <td>
+                            @php
+                                $totalAmount = 0;
+                            @endphp
 
-        <h2 style="font-weight:bold">Facture & BL Régler</h2>
-        <table class="text-center my-3" id="regler">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Num</th>
-                    <th>Type</th>
-                    <th>TVA</th>
-                    <th>Régler</th>
-                    <th>Show</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($bls as $bl)
-                    @if($bl->regler == "Oui")
-                        <tr>
-                            <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
-                            <td>{{ $bl->num }}</td>
-                            <td>{{ $bl->type }}</td>
-                            <td>{{ $bl->tva }}%</td>
-                            <td>{{ $bl->regler }}</td>
-                            <td>
-                                <a href="{{ route('detail_bl.show', $bl->id) }}">
-                                    <span class="material-symbols-outlined">ads_click</span>
-                                </a>
-                            </td>
-                            <td>
-                                <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>                                        <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
-                                </form>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-            </tbody>
-        </table>
-        
-    </div>
+                            @foreach ($detail_bls as $detail_bl)
+                                @if ($detail_bl->id_bl == $bl->id)
+                                    @php
+                                        $prix = $detail_bl->qte * $detail_bl->pu;
+                                        $totalAmount += $prix;
+                                    @endphp
+                                @endif
+                            @endforeach
+
+                            @php
+                                $totalAmount += ($totalAmount * $bl->tva) / 100; // Include TVA in totalAmount
+                                $grandTotal += $totalAmount; // Add the totalAmount to the grandTotal
+                            @endphp
+
+                            {{ $totalAmount }} <br>
+                        </td>
+                        <td>
+                            <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>
+                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
+                            </form>
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
+        </tbody>
+    </table>
+
+    <table width="20%" class="text-center bg-warning">
+        <tr>
+            <th>Total des Factures</th>
+        </tr>
+        <tr>
+            <td>{{ $grandTotal }}</td>
+        </tr>
+    </table>
+    
+    <h2 style="font-weight:bold">BL</h2>
+    <table class="text-center my-3" id="designations">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Num</th>
+                <th>Type</th>
+                <th>TVA</th>
+                <th>Régler</th>
+                <th>Show</th>
+                <th>Montant Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $grandTotal = 0; // Variable for accumulating the grand total
+            @endphp
+            @foreach ($bls as $bl)
+                @if($bl->type == "BL" && $bl->regler == "Non")
+                    @php
+                        $totalAmount = 0;
+                    @endphp
+                    <tr>
+                        <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
+                        <td>{{ $bl->num }}</td>
+                        <td>{{ $bl->type }}</td>
+                        <td>{{ $bl->tva }}%</td>
+                        <td>{{ $bl->regler }}</td>
+                        <td>
+                            <a href="{{ route('detail_bl.show', $bl->id) }}">
+                                <span class="material-symbols-outlined">ads_click</span>
+                            </a>
+                        </td>
+                        <td>
+                            @php
+                                $totalAmount = 0;
+                            @endphp
+
+                            @foreach ($detail_bls as $detail_bl)
+                                @if ($detail_bl->id_bl == $bl->id)
+                                    @php
+                                        $prix = $detail_bl->qte * $detail_bl->pu;
+                                        $totalAmount += $prix;
+                                    @endphp
+                                @endif
+                            @endforeach
+
+                            @php
+                                $totalAmount += ($totalAmount * $bl->tva) / 100; // Include TVA in totalAmount
+                                $grandTotal += $totalAmount; // Add the totalAmount to the grandTotal
+                            @endphp
+
+                            {{ $totalAmount }}
+                        </td>
+                        <td>
+                            <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>
+                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
+                            </form>
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
+        </tbody>
+    </table>
+
+    <table width="20%" class="text-center bg-warning">
+        <tr>
+            <th>Total des Factures</th>
+        </tr>
+        <tr>
+            <td>{{ $grandTotal }}</td>
+        </tr>
+    </table>
+
+
+    <h2 style="font-weight:bold">Facture & BL Régler</h2>
+    <table class="text-center my-3" id="regler">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Num</th>
+                <th>Type</th>
+                <th>TVA</th>
+                <th>Régler</th>
+                <th>Show</th>
+                <th>Montant Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $grandTotal = 0; // Variable for accumulating the grand total
+            @endphp
+            @foreach ($bls as $bl)
+                @if($bl->regler == "Oui")
+                    <tr>
+                        <td>{{ \Carbon\Carbon::parse($bl->date)->format('d/m/Y') }}</td>
+                        <td>{{ $bl->num }}</td>
+                        <td>{{ $bl->type }}</td>
+                        <td>{{ $bl->tva }}%</td>
+                        <td>{{ $bl->regler }}</td>
+                        <td>
+                            <a href="{{ route('detail_bl.show', $bl->id) }}">
+                                <span class="material-symbols-outlined">ads_click</span>
+                            </a>
+                        </td>
+                        <td>
+                            @php
+                                $totalAmount = 0;
+                            @endphp
+                            @foreach ($detail_bls as $detail_bl)
+                                @if ($detail_bl->id_bl == $bl->id)
+                                    @php
+                                        $prix = $detail_bl->qte * $detail_bl->pu;
+                                        $totalAmount += $prix;
+                                    @endphp
+                                @endif
+                            @endforeach
+                            @php
+                                $totalAmount += ($totalAmount * $bl->tva) / 100; // Include TVA in totalAmount
+                                $grandTotal += $totalAmount; // Add the totalAmount to the grandTotal
+                            @endphp
+                            {{ $totalAmount }}
+                        </td>
+                        <td>
+                            <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
+                                @csrf
+                                @method('DELETE')
+                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>
+                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
+                            </form>
+                        </td>
+                    </tr>
+                @endif
+            @endforeach
+        </tbody>
+    </table>
+
+    <table width="20%" class="text-center bg-warning">
+        <tr>
+            <th>Total des Factures</th>
+        </tr>
+        <tr>
+            <td>{{ $grandTotal }}</td>
+        </tr>
+    </table>
+</div>
 
     <script>
         function confirmDelete(detailDevisId) {

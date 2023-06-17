@@ -50,6 +50,11 @@
                             <a class="nav-link" href="{{ route('reglement.index') }}">Règlements</a>
                         </li>
                         @endif
+                        @if (Auth::user()->email == "younes@gmail.com")
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('pointage.index') }}">Pointage</a>
+                        </li>
+                        @endif
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

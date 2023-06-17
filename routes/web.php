@@ -10,13 +10,16 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ContratController;
 use App\Http\Controllers\PlacardController;
 use App\Http\Controllers\DetailBlController;
+use App\Http\Controllers\PointageController;
 use App\Http\Controllers\SalarierController;
 use App\Http\Controllers\ReglementController;
 use App\Http\Controllers\DetailDevisController;
 use App\Http\Controllers\FournisseurController;
 use App\Http\Controllers\DetailPlacardController;
 use App\Http\Controllers\ListeArticlesController;
+use App\Http\Controllers\DetailPointageController;
 use App\Http\Controllers\DetailFournisseurController;
+
 // Redirigez la page d'accueil vers la page de connexion
 Route::get('/', function () {
     return redirect('/login');
@@ -60,6 +63,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('detail-bl/{blId}', [DetailBlController::class, 'show'])->name('detail_bl.show');
     Route::get('/detail-bl/{blId}/pdf', [DetailBlController::class, 'generatePDF'])->name('detail_bl.pdf');
     Route::get('/liste_articles', [ListeArticlesController::class, 'index']);
+
+    //Pointages
+    Route::resource('pointage',PointageController::class);
+    Route::resource('detail_pointage',DetailPointageController::class);
+    Route::get('/liste_pointage', [DetailPointageController::class, 'liste_pointage']);
+
 
 });
 

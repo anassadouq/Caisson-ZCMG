@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bl;
+use App\Models\DetailBl;
 use App\Models\Fournisseur;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreBlRequest;
 use App\Http\Requests\UpdateBlRequest;
+use Illuminate\Support\Facades\Storage;
 
 class BlController extends Controller
 {
     public function index()
     {
         $bls = Bl::all();
-        return view('bl.index', compact('bls'));
+        $detail_bls = DetailBl::all();
+        return view('bl.index', compact('bls','detail_bls'));
     }
 
     public function create(Request $request)
@@ -71,8 +73,9 @@ class BlController extends Controller
     public function show($fournisseurId)
     {
         $fournisseur = Fournisseur::find($fournisseurId);
+        $detail_bls = DetailBl::all();
         $bls = Bl::where('id_fournisseur', $fournisseurId)->get();
-        return view('bl.show', compact('bls', 'fournisseur'));
+        return view('bl.show', compact('bls', 'fournisseur','detail_bls'));
     }
 
     public function destroy($id)

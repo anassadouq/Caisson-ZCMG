@@ -85,7 +85,7 @@
                     <td>{{ $total }}</td>
                     <td>{{ $bl->tva }}%</td>
                     <td>{{ ($total * $bl->tva)/100}}</td>
-                    <td>{{ $total +(($total * $bl->tva)/100) }}</td>
+                    <td>{{ $total +(($total * $bl->tva)/100) }}</td>                    
                 </tr>
             </table>
         </div>
