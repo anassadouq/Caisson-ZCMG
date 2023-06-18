@@ -1,4 +1,3 @@
-@auth
 @extends('layouts.app')
 @section('content')
 <html>
@@ -23,7 +22,9 @@
                     <th>Prenom</th>
                     <th>CIN</th>
                     <th>Tel</th>
-                    <th>Salaire</th>
+                    @if (Auth::user()->email == "younes@gmail.com")
+                        <th>Salaire</th>
+                    @endif
                     <th>Date Entrée</th>
                     <th>Active</th>
                     <th>Show</th>
@@ -37,7 +38,9 @@
                         <td>{{ $salarier->prenom }}</td>
                         <td>{{ $salarier->cin }}</td>
                         <td>{{ $salarier->tel }}</td>
-                        <td>{{ $salarier->salaire }}DH</td>
+                        @if (Auth::user()->email == "younes@gmail.com")
+                            <td>{{ $salarier->salaire }}DH</td>
+                        @endif
                         <td>{{ \Carbon\Carbon::parse($salarier->dateEntree)->format('d/m/Y') }}</td>
                         <td>{{ $salarier->active }}</td>
                         <td>
@@ -49,8 +52,12 @@
                             <form action="{{ route('salarier.destroy', $salarier->id) }}" method="POST" id="deleteSalarierForm{{ $salarier->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('salarier.edit' ,$salarier->id) }}" class="btn btn-secondary">Modifier</a>
-                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDeleteSalarier('{{ $salarier->id }}')">Supprimer</button>
+                                <a href="{{ route('salarier.edit' ,$salarier->id) }}" class="btn btn-secondary">
+                                    <span class="material-symbols-outlined">edit</span>     
+                                Modifier</a>
+                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDeleteSalarier('{{ $salarier->id }}')">
+                                    <span class="material-symbols-outlined">delete</span>
+                                Supprimer</button>
                             </form>
                         </td>
                     </tr>
@@ -69,4 +76,3 @@
 </body>
 </html>
 @endsection
-@endauth

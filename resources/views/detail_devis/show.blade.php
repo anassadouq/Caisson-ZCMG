@@ -63,8 +63,12 @@
                         <form action="{{ route('detail_devis.destroy', $detail_devis['id']) }}" method="POST" id="deleteForm{{ $detail_devis['id'] }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('detail_devis.edit', $detail_devis['id']) }}" class="btn btn-secondary">Modifier</a>
-                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_devis['id'] }}')">Supprimer</button> 
+                            <a href="{{ route('detail_devis.edit', $detail_devis['id']) }}" class="btn btn-secondary">
+                                <span class="material-symbols-outlined">edit</span>    
+                            Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_devis['id'] }}')">
+                                <span class="material-symbols-outlined">delete</span>
+                            Supprimer</button> 
                         </form>
                     </td>
                 </tr>

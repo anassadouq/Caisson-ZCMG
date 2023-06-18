@@ -53,8 +53,12 @@
                         <form action="{{ route('contrat.destroy', $contrat['id']) }}" method="POST" id="deleteContratForm{{ $contrat['id'] }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('contrat.edit' ,$contrat['id']) }}" class="btn btn-secondary">Modifier</a>
-                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDeleteContrat('{{ $contrat['id'] }}')">Supprimer</button>
+                            <a href="{{ route('contrat.edit' ,$contrat['id']) }}" class="btn btn-secondary">
+                                <span class="material-symbols-outlined">edit</span>    
+                            Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDeleteContrat('{{ $contrat['id'] }}')">
+                                <span class="material-symbols-outlined">delete</span>
+                            Supprimer</button>
                         </form>
                     </td>
                 </tr>

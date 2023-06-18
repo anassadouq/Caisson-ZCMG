@@ -15,16 +15,19 @@
             <span class="material-symbols-outlined">add</span>
         </button>
     </a>
-        
-    <label>Debut : </label>
-        <input type="date" id="debut">
-    <label>Fin : </label>
-        <input type="date" id="fin">
-    <button id="filterButton">Clicker</button>
+    @if (Auth::user()->email == "younes@gmail.com")
+        <label>Debut : </label>
+            <input type="date" id="debut">
+        <label>Fin : </label>
+            <input type="date" id="fin">
+        <button id="filterButton">Clicker</button>
+    @endif
 
     <div class="mx-3">
         <h1 class="text-center">{{ $salarier->prenom }} {{ $salarier->nom }}</h1>
-        <h1 class="text-center">{{ $salarier->salaire }}dh/jrs</h1>
+        @if (Auth::user()->email == "younes@gmail.com")
+            <h1 class="text-center">{{ $salarier->salaire }}dh/jrs</h1>
+        @endif
         <table class="text-center" id="show">
             <thead>
                 <tr>
@@ -32,6 +35,7 @@
                     <th>presentAbsent</th>
                     <th>heureSupp / heureMoin</th>
                     <th>avance</th>
+                    <th>montantAjouter</th>
                     <th>remarque</th>
                     <th>Action</th>
                 </tr>
@@ -59,18 +63,23 @@
                             @endif
                         </td>
                         <td>{{ $detail_pointage->avance }}</td>
+                        <td>{{ $detail_pointage->montantAjouter }}</td>
                         <td>{{ $detail_pointage->remarque }}</td>
                         <td>
                         <form action="{{ route('detail_pointage.destroy', $detail_pointage['id']) }}" method="POST" id="deletedetail_pointageForm{{ $detail_pointage['id'] }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('detail_pointage.edit' ,$detail_pointage['id']) }}" class="btn btn-secondary">Modifier</a>
-                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDeletedetail_pointage('{{ $detail_pointage['id'] }}')">Supprimer</button>
+                            <a href="{{ route('detail_pointage.edit' ,$detail_pointage['id']) }}" class="btn btn-secondary">
+                                <span class="material-symbols-outlined">edit</span>                                
+                            Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDeletedetail_pointage('{{ $detail_pointage['id'] }}')">
+                                <span class="material-symbols-outlined">delete</span>
+                            Supprimer</button>
                         </form>
                         </td>
                     </tr>
                     @php
-                        if ($detail_pointage->presentAbsent === 'x') {
+                        if ($detail_pointage->presentAbsent === 'P') {
                             $totaleSalaire += $salarier->salaire;
                         }
                         if ($detail_pointage->heureSupp) {
@@ -98,19 +107,20 @@
                 @endforeach
 
                 @php
-                    $totalSalaire = $totalSalaireInitial; // Stockez le total initial du salaire dans une nouvelle variable
+                    $totalSalaire = $totalSalaireInitial;
                 @endphp
             </tbody>
         </table>
-
-        <table width="15%" class="text-center">
-            <tr>
-                <th>Total Solde</th>
-            </tr>
-            <tr>
-                <td id="cellTotalSalaire"></td>
-            </tr>
-        </table>
+        @if (Auth::user()->email == "younes@gmail.com")
+            <table width="15%" class="text-center">
+                <tr>
+                    <th>Total Solde</th>
+                </tr>
+                <tr>
+                    <td id="cellTotalSalaire"></td>
+                </tr>
+            </table>
+        @endif
     </div>
 
     <script>
@@ -126,7 +136,7 @@
             var dateDebut = new Date(debut);
             var dateFin = new Date(fin);
             var rows = document.getElementsByClassName("dataRow");
-            var filteredTotalSalaire = 0; // Initialize the filtered total salaire
+            var filteredTotalSalaire = 0;
 
             // Perform filtering and calculate the filtered total salaire
             for (var i = 0; i < rows.length; i++) {
@@ -138,14 +148,14 @@
 
                 if (date >= dateDebut && date <= dateFin) {
                     rows[i].style.display = "";
-                    if (presentAbsent === 'x') {
+                    if (presentAbsent === 'P') {
                         filteredTotalSalaire += salaire;
                     }
                     if (heureSupp.includes('+') || heureSupp.includes('-')) {
-                        var regex = /([-+]?\d+)h(\d+)/; // Modifiez la regex pour gérer également les heures négatives
+                        var regex = /([-+]?\d+)h(\d+)/;
                         var matches = heureSupp.match(regex);
                         if (matches && matches.length === 3) {
-                            var hourSign = matches[1].startsWith('-') ? -1 : 1; // Détermine le signe des heures supplémentaires
+                            var hourSign = matches[1].startsWith('-') ? -1 : 1;
                             var overtimeHours = parseInt(matches[1]) * hourSign;
                             var overtimeMinutes = parseInt(matches[2]);
                             if (!isNaN(overtimeHours) && !isNaN(overtimeMinutes)) {
@@ -161,7 +171,6 @@
                     rows[i].style.display = "none";
                 }
             }
-            // Update the cell displaying the filtered total salaire
             document.getElementById("cellTotalSalaire").textContent = filteredTotalSalaire + "DH";
         });
     </script>

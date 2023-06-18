@@ -2,7 +2,7 @@
 @section('content')
 <html>
 <head>
-	<title>Règlements</title>
+	<title>Bank</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.4/datatables.min.css"/>
@@ -18,7 +18,7 @@
     </style>
 
     <div class="container">
-        <h1 class="text-center">Règlements</h1>
+        <h1 class="text-center">Bank</h1>
         <a href="{{route('reglement.create')}}" >
             <button class="btn btn-primary my-2 mx-3" style="width:85px">
                 <span class="material-symbols-outlined">add</span>
@@ -100,8 +100,12 @@
                                 <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
-                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
+                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">
+                                        <span class="material-symbols-outlined">edit</span>    
+                                    Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    Supprimer</button>
                                 </form>
                             </td>
                         </tr>
@@ -146,8 +150,12 @@
                                 <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
-                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
+                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">
+                                        <span class="material-symbols-outlined">edit</span>    
+                                    Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    Supprimer</button>
                                 </form>
                             </td>
                         </tr>
@@ -193,8 +201,12 @@
                                 <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
-                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
+                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">
+                                        <span class="material-symbols-outlined">edit</span>    
+                                    Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    Supprimer</button>
                                 </form>
                             </td>
                         </tr>
@@ -239,8 +251,12 @@
                                 <form action="{{ route('reglement.destroy', $reglement->id) }}" method="POST" id="deleteForm{{ $reglement->id }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
-                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">Supprimer</button>
+                                    <a href="{{ route('reglement.edit', $reglement->id) }}" class="btn btn-secondary" id="btn">
+                                        <span class="material-symbols-outlined">edit</span>    
+                                    Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $reglement->id }}')" id="btn">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    Supprimer</button>
                                 </form>
                             </td>
                         </tr>

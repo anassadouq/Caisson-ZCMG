@@ -65,8 +65,12 @@
                                 <form action="{{ route('detail_bl.destroy', $detail_bl['id']) }}" method="POST" id="deleteForm{{ $detail_bl['id'] }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="{{ route('detail_bl.edit', $detail_bl['id']) }}" class="btn btn-secondary">Modifier</a>
-                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_bl['id'] }}')">Supprimer</button> 
+                                    <a href="{{ route('detail_bl.edit', $detail_bl['id']) }}" class="btn btn-secondary">
+                                        <span class="material-symbols-outlined">edit</span>    
+                                    Modifier</a>
+                                    <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_bl['id'] }}')">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    Supprimer</button> 
                                 </form>
                             </td>
                         </tr>

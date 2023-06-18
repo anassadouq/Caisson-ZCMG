@@ -17,6 +17,7 @@ return new class extends Migration
             $table->time('heureSupp', 0)->nullable(); // Modifier la colonne avec une précision de 0 pour les secondes
             $table->time('heureMoin')->nullable();
             $table->integer('avance')->nullable();
+            $table->integer('montantAjouter')->nullable();
             $table->string('remarque')->nullable();
             $table->timestamps();
         });

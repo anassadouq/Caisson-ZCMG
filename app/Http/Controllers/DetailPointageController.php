@@ -33,6 +33,7 @@ class DetailPointageController extends Controller
         $detail_pointage->heureSupp = $request->heureSupp;
         $detail_pointage->heureMoin = $request->heureMoin;
         $detail_pointage->avance = $request->avance;
+        $detail_pointage->montantAjouter = $request->montantAjouter;
         $detail_pointage->remarque = $request->remarque;
 
         $detail_pointage->save();
@@ -74,5 +75,5 @@ class DetailPointageController extends Controller
             'pointages' => $pointages,
             'salariers' => $salariers
         ]);
-    }   
+    }
 }

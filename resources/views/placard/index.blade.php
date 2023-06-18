@@ -1,4 +1,3 @@
-@auth
 @extends('layouts.app')
 @section('content')
 <html>
@@ -26,7 +25,7 @@
                     <th>Nom</th>
                     <th>Lieu</th>
                     <th>Eppesseur Matiere</th>
-                    <th>Eppesseur Dérriere</th>
+                    <th>Eppesseur Derriere</th>
                     <th>Show</th>
                     <th>Actions</th>
                 </tr>
@@ -47,8 +46,12 @@
             <form action="{{ route('client.destroy', $client->id) }}" method="POST" id="deleteForm{{ $client->id }}">
                 @csrf
                 @method('DELETE')
-                <a href="{{ route('client.edit', $client->id) }}" class="btn btn-secondary">Modifier</a>
-                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $client->id }}')">Supprimer</button>
+                <a href="{{ route('client.edit', $client->id) }}" class="btn btn-secondary">
+                    <span class="material-symbols-outlined">edit</span>     
+                Modifier</a>
+                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $client->id }}')">
+                    <span class="material-symbols-outlined">delete</span>
+                Supprimer</button>
             </form>
         </td>
     </tr>
@@ -115,4 +118,3 @@
 </body>
 </html>
 @endsection
-@endauth

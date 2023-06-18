@@ -14,7 +14,8 @@ class Pointage extends Model
         'presentAbsent',
         'heureSupp',
         'heureMoin',
-        'avance',
+        'avance',      
+        'montantAjouter',
         'remarque'
     ];
 

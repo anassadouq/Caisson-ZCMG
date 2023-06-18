@@ -1,10 +1,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 <style>
     #t{
         width: 350px;
     }
 </style>
-<h1 class="text-center">Update</h1>
 <form action="{{ route('contrat.update',$contrat) }}" class="container" method="post">
     <center>
         <table>
@@ -25,7 +26,9 @@
             <tr>
                 <td><b>Tel</b></td>
                 <td> : <input type="date" id="t" name="dateFinale" value="{{ $contrat->dateFinale }}" class="my-4">
-                    <input type="submit" class="btn btn-secondary mx-2" value="Update" href="{{ route('contrat.index') }}">
+                <button class="btn btn-secondary mx-2">
+                    <span class="material-symbols-outlined">edit</span> 
+                Modifier</button>
                 </td>
             </tr>
         </table>      

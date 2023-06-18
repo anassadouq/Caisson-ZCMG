@@ -68,8 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('pointage',PointageController::class);
     Route::resource('detail_pointage',DetailPointageController::class);
     Route::get('/liste_pointage', [DetailPointageController::class, 'liste_pointage']);
-
-
 });
 
 Auth::routes();

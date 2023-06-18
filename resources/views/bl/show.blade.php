@@ -81,8 +81,12 @@
                             <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>
-                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
+                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">
+                                    <span class="material-symbols-outlined">edit</span>    
+                                Modifier</a>
+                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">
+                                    <span class="material-symbols-outlined">delete</span>
+                                Supprimer</button> 
                             </form>
                         </td>
                     </tr>
@@ -159,8 +163,12 @@
                             <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>
-                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
+                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">
+                                    <span class="material-symbols-outlined">edit</span>    
+                                Modifier</a>
+                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">
+                                    <span class="material-symbols-outlined">delete</span>
+                                Supprimer</button> 
                             </form>
                         </td>
                     </tr>
@@ -232,8 +240,12 @@
                             <form action="{{ route('bl.destroy', $bl['id']) }}" method="POST" id="deleteForm{{ $bl['id'] }}">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">Modifier</a>
-                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">Supprimer</button> 
+                                <a href="{{ route('bl.edit', $bl['id']) }}" class="btn btn-secondary">
+                                    <span class="material-symbols-outlined">edit</span>    
+                                Modifier</a>
+                                <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $bl['id'] }}')">
+                                    <span class="material-symbols-outlined">delete</span>
+                                Supprimer</button> 
                             </form>
                         </td>
                     </tr>

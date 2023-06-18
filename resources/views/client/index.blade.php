@@ -14,7 +14,7 @@
         <h1 class="text-center">Cuisines</h1>
 
         <a href="{{route('client.create')}}" >
-            <button class="btn btn-primary my-4" style="width:85px">
+            <button class="btn btn-primary my-3" style="width:85px">
                 <span class="material-symbols-outlined">add</span>
             </button>
         </a>
@@ -45,8 +45,12 @@
                         <form action="{{ route('client.destroy', $client->id) }}" method="POST" id="deleteForm{{ $client->id }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('client.edit', $client->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
-                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $client->id }}')" id="btn">Supprimer</button>
+                            <a href="{{ route('client.edit', $client->id) }}" class="btn btn-secondary" id="btn">
+                                <span class="material-symbols-outlined">edit</span>    
+                            Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $client->id }}')" id="btn">
+                                <span class="material-symbols-outlined">delete</span>
+                            Supprimer</button>
                         </form>
                     </td>
                 </tr>

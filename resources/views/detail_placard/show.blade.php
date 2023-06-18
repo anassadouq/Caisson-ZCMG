@@ -1,4 +1,3 @@
-@auth
 @extends('layouts.app')
 @section('content')
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -51,8 +50,12 @@
                         <form action="{{ route('detail_placard.destroy', $detail_placard['id']) }}" method="POST" id="deleteForm{{ $detail_placard['id'] }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('detail_placard.edit', $detail_placard['id']) }}" class="btn btn-secondary">Modifier</a>
-                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_placard['id'] }}')">Supprimer</button>
+                            <a href="{{ route('detail_placard.edit', $detail_placard['id']) }}" class="btn btn-secondary">
+                                <span class="material-symbols-outlined">edit</span>    
+                            Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $detail_placard['id'] }}')">
+                                <span class="material-symbols-outlined">delete</span>
+                            Supprimer</button>
                         </form>
                     </td>
                 </tr>
@@ -117,4 +120,3 @@
     });
 </script>
 @endsection
-@endauth

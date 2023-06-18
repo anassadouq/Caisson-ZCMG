@@ -1,4 +1,3 @@
-@auth
 @extends('layouts.app')
 @section('content')
 <html>
@@ -22,7 +21,7 @@
         </button>
     </a>
     <a href="{{url('/liste_articles')}}" class="mx-3 btn btn-info">Liste Articles</a>
-        <table id="myTable">
+        <table id="myTable" width="100%">
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -47,8 +46,12 @@
                         <form action="{{ route('fournisseur.destroy', $fournisseur->id) }}" method="POST" id="deleteForm{{ $fournisseur->id }}">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ route('fournisseur.edit', $fournisseur->id) }}" class="btn btn-secondary" id="btn">Modifier</a>
-                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $fournisseur->id }}')" id="btn">Supprimer</button>
+                            <a href="{{ route('fournisseur.edit', $fournisseur->id) }}" class="btn btn-secondary" id="btn">
+                                <span class="material-symbols-outlined">edit</span>    
+                            Modifier</a>
+                            <button type="button" class="btn btn-danger mx-3" onclick="confirmDelete('{{ $fournisseur->id }}')" id="btn">
+                                <span class="material-symbols-outlined">delete</span>
+                            Supprimer</button>
                         </form>
                     </td>
                 </tr>
@@ -115,4 +118,3 @@
 </body>
 </html>
 @endsection
-@endauth
